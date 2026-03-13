@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafiqul Islam | Content Creator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-dim: #b3b3b3;
+            --primary: #FF0000;
+            --glass: rgba(255, 255, 255, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #1a0000 0%, #0a0a0a 70%);
+        }
+
+        #hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        #hero p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--glass);
+            color: white;
+        }
+
+        .btn-outline:hover { background: var(--glass); }
+
+        /* --- Sections General --- */
+        section { padding: 100px 10%; }
+        h2 { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
+        h2 span { color: var(--primary); }
+
+        /* --- Video Feed --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 */
+        }
+
+        .thumbnail-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-info { padding: 1.5rem; }
+        .video-info h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+
+        /* --- About & Stats --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: var(--glass);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .stat-box i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+        .stat-box div { font-size: 1.5rem; font-weight: 900; }
+        .stat-box p { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* --- Contact Form --- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: var(--text-dim); }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid var(--glass);
+            color: white;
+            border-radius: 5px;
+            outline: none;
+        }
+        input:focus, textarea:focus { border-color: var(--primary); }
+
+        /* --- Footer --- */
+        footer {
+            padding: 50px 10%;
+            border-top: 1px solid var(--glass);
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover { color: var(--primary); transform: translateY(-3px); }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--bg-color);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                transition: 0.3s;
+                border-bottom: 1px solid var(--glass);
+            }
+
+            .nav-links.active { right: 0; }
+            .menu-toggle { display: block; }
+            .about-container { grid-template-columns: 1fr; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">RAF<span>IQUL</span></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <h1>CREATING THE <span style="color: var(--primary);">FUTURE</span></h1>
+        <p>Tech enthusiast, gamer, and digital storyteller. Bringing you the latest in tech reviews and high-octane gaming content.</p>
+        <div class="cta-group">
+            <a href="https://youtube.com/channel/UCOoKRsBO4qvtKsYcHDD-zvQ" target="_blank" class="btn btn-primary">Subscribe Now</a>
+            <a href="#videos" class="btn btn-outline">Watch Videos</a>
+        </div>
+    </section>
+
+    <section id="videos">
+        <h2>Latest <span>Uploads</span></h2>
+        <div class="video-grid" id="youtube-feed">
+            <p style="text-align:center; grid-column: 1/-1;">Loading latest videos...</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>About <span>Me</span></h2>
+                <p>Hello! I'm Rafiqul Islam. I've dedicated my channel to exploring the intersection of technology and gaming. My goal is to provide high-quality, informative, and entertaining content for my community.</p>
+                <br>
+                <p>Whether it's hardware unboxing, software tutorials, or competitive gameplay, I strive for excellence in every frame.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <i class="fab fa-youtube"></i>
+                    <div id="sub-count">100K+</div>
+                    <p>Subscribers</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-eye"></i>
+                    <div id="view-count">5M+</div>
+                    <p>Total Views</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-video"></i>
+                    <div>250+</div>
+                    <p>Videos</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-clock"></i>
+                    <div>Weekly</div>
+                    <p>Upload Schedule</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In <span>Touch</span></h2>
+        <div class="contact-form">
+            <form id="portfolioContact">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; border:none; cursor:pointer;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/channel/UCOoKRsBO4qvtKsYcHDD-zvQ" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+        </div>
+        <p>&copy; 2026 Rafiqul Islam. Built for the community.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // YouTube RSS Feed Integration
+        const CHANNEL_ID = 'UCOoKRsBO4qvtKsYcHDD-zvQ';
+        const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+
+        async function fetchVideos() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                const container = document.getElementById('youtube-feed');
+                
+                if (data.status === 'ok') {
+                    container.innerHTML = ''; // Clear loading text
+                    
+                    // Show only first 3 videos
+                    data.items.slice(0, 3).forEach(video => {
+                        // Extract ID from guid (yt:video:VIDEO_ID)
+                        const videoId = video.guid.split(':')[2];
+                        const videoCard = `
+                            <div class="video-card">
+                                <a href="${video.link}" target="_blank" style="text-decoration:none; color:inherit;">
+                                    <div class="thumbnail-container">
+                                        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="${video.title}">
+                                    </div>
+                                    <div class="video-info">
+                                        <h3>${video.title}</h3>
+                                        <p style="color:var(--text-dim); font-size:0.8rem;">
+                                            <i class="far fa-calendar-alt"></i> ${new Date(video.pubDate).toLocaleDateString()}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                        container.innerHTML += videoCard;
+                    });
+                } else {
+                    container.innerHTML = '<p>Unable to load videos at this time.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching YouTube feed:', error);
+                document.getElementById('youtube-feed').innerHTML = '<p>Error connecting to feed.</p>';
+            }
+        }
+
+        // Form Submission Handling
+        document.getElementById('portfolioContact').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for reaching out, Rafiqul! (Note: This is a demo; integration requires a backend or service like Formspree).');
+        });
+
+        // Initialize
+        window.onload = fetchVideos;
+    </script>
+</body>
+</html>
